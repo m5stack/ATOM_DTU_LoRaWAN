@@ -95,7 +95,7 @@ void setup()
     // LoRaWAN.setRxWindow("505300000");
 
     //LoRaWAN868
-    // LoRaWAN.setRxWindow("505300000");
+    // LoRaWAN.setRxWindow("869525000");
 
     //LoRaWAN915
     LoRaWAN.setRxWindow("923300000");
