@@ -1,6 +1,6 @@
 /*
     Description: 
-    Use ATOM DTU LoRaWAN to connect to the Gateway by OTAA mode, and implement subscription and publishing messages.
+    Use ATOM DTU LoRaWAN to connect to the Gateway by ABP mode, and implement subscription and publishing messages.
     Before use, please configure the device information, receiving window, frequency band mask and other information according to the actual connected network.
     Please install library before compiling:  
     FastLED: https://github.com/FastLED/FastLED
@@ -75,12 +75,15 @@ void setup()
         ,  0);
 
 
-    LoRaWAN.configOTTA(
-        "d896e0ff00000241",//Device EUI
-        "0000000000000001",//APP EUI
-        "98929b92f09e2daf676d646d0f61d251",//APP KEY
+    LoRaWAN.configABP(
+        "00dee04b",//Device ADDR
+        "c72d71040684b489b7db59eaea209e07",//APP SKEY
+        "81b8f25726d9b961b0e07cab6f91eb3c",//Nwk SKEY
         "2"//Upload Download Mode
     );
+
+
+
 
     response = LoRaWAN.waitMsg(1000);
     Serial.println(response);
@@ -91,13 +94,13 @@ void setup()
     LoRaWAN.writeCMD("AT+CWORKMODE=2\r\n");
 
     //LoRaWAN470
-    // LoRaWAN.setRxWindow("505300000");
+    LoRaWAN.setRxWindow("505300000");
 
     //LoRaWAN868
     // LoRaWAN.setRxWindow("869525000");
 
     //LoRaWAN915
-    LoRaWAN.setRxWindow("923300000");
+    // LoRaWAN.setRxWindow("923300000");
 
     // LoRaWAN470 TX Freq
     // 486.3
@@ -109,7 +112,7 @@ void setup()
     // 487.5
     // 487.7
     //MARK 0000 0100 0000 0000 | 0x0400
-    // LoRaWAN.setFreqMask("0400");
+    LoRaWAN.setFreqMask("0400");
 
 
     // LoRaWAN868 TX Freq
@@ -134,26 +137,7 @@ void setup()
     // 903.5
     // 903.7
     //MARK 0000 0000 0000 0001 | 0x001
-    LoRaWAN.setFreqMask("0001");
-
-    delay(100);
-    response = LoRaWAN.waitMsg(1000);
-    Serial.println(response);
-    LoRaWAN.startJoin();
-    Serial.print("Start Join.....");
-    while(1){
-        response = LoRaWAN.waitMsg(1000);
-        Serial.println(response);
-        if(response.indexOf("+CJOIN:") != -1) {
-            State = kConnected;
-            break;
-        }else if(response.indexOf("ERROR") != -1){
-            State = kError;
-            Serial.print("Join ERROR.");
-            ESP.restart();
-        }
-    }
-    delay(2000);
+    // LoRaWAN.setFreqMask("0001");
 }
 
 void loop()
