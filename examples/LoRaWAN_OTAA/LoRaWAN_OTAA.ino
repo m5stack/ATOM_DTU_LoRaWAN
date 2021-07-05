@@ -160,7 +160,7 @@ void loop()
 {
 
     //send data
-    LoRaWAN.sendMsg(1,15,8,"4655434b20535443");
+    LoRaWAN.sendMsg(1,15,7,"4d35535441434b");
     while(1) {
         State = kSending;
         response = LoRaWAN.waitMsg(1000);
