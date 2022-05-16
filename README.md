@@ -15,7 +15,7 @@ Contains M5Stack-**ATOM DTU LoRaWAN** series related case programs. The hardware
 
 ## Related Link
 
-[Docment & AT Command](https://docs.m5stack.com/en/atom/atom_dtu_lorawan868)
+[Document & AT Command](https://docs.m5stack.com/en/atom/atom_dtu_lorawan868)
 
 ## License
 
