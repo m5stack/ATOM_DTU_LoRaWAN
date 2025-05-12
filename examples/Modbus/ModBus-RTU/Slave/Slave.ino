@@ -1,4 +1,3 @@
-
 /*
 *******************************************************************************
 * Copyright (c) 2022 by M5Stack
@@ -29,7 +28,7 @@ void setup() {
     M5.begin();
     // start the Modbus RTU server, with (slave) id 42
     if (!ModbusRTUServer.begin(42, 9600)) {
-        Serial.println("Failed to start Modbus RTU Server!");
+        Serial.println("Failed to start Modbus RTU Client!");
         while (1)
             ;
     }

@@ -22,7 +22,7 @@ RS485Class RS485(Serial2, ATOM_DTU_RS485_RX, ATOM_DTU_RS485_TX, -1, -1);
 void setup() {
     M5.begin(true, false, true);
     if (!ModbusRTUClient.begin(9600, SERIAL_8N1)) {
-        Serial.println("Failed to start Modbus RTU Client!");
+        Serial.println("Failed to start Modbus RTU Server!");
         while (1)
             ;
     }
